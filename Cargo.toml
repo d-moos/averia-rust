@@ -1,0 +1,14 @@
+[package]
+name = "averia"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = [
+    "net",
+    "protocol"
+]
+
+[dependencies]
+net = { path = "net" }
+tokio = "1.26.0"
