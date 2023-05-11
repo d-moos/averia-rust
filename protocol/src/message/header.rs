@@ -28,7 +28,7 @@ impl From<&[u8]> for Header {
     fn from(buffer: &[u8]) -> Self {
         Header {
             size: u16::from_le_bytes(buffer[0..2].try_into().unwrap()),
-            id: MessageId::from(u16::from_le_bytes(buffer[2..2].try_into().unwrap())),
+            id: MessageId::from(u16::from_le_bytes(buffer[2..4].try_into().unwrap())),
             checksum: buffer[5],
             sequence: buffer[4],
         }
@@ -36,6 +36,9 @@ impl From<&[u8]> for Header {
 }
 
 impl Header {
+    pub fn id (&self) -> &MessageId {
+        &self.id
+    }
     pub fn data_size(&self) -> u16 {
         (self.size & !HEADER_ENC_MASK) + MAX_HEADER_SIZE
     }

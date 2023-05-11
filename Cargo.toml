@@ -12,3 +12,4 @@ members = [
 [dependencies]
 net = { path = "net" }
 tokio = "1.26.0"
+env_logger = "0.10.0"

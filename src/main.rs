@@ -1,6 +1,12 @@
-use net::NetServer;
+use net::client::NetClient;
 
-fn main() {
-    let s = NetServer {};
-    s.run();
+
+#[tokio::main]
+async fn main() {
+    env_logger::builder()
+        .init();
+
+    let s = NetClient {};
+    let _ = s.start().await;
+    println!("?");
 }

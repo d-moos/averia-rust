@@ -1,3 +1,4 @@
+use std::fmt::{Display, Formatter};
 use crate::message::message_type::{MessageType};
 
 const OPERATION_SIZE: u16 = 12;
@@ -14,9 +15,16 @@ const DIRECTION_MASK: u16 = ((1 << DIRECTION_SIZE) - 1) << DIRECTION_OFFSET;
 
 
 pub struct MessageId {
-    direction: u8,
-    message_type: MessageType,
-    operation: u16,
+    pub direction: u8,
+    pub message_type: MessageType,
+    pub operation: u16,
+}
+
+impl Display for MessageId {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let opcode: u16 = self.clone().into();
+        write!(f, "0x{:X}", opcode)
+    }
 }
 
 impl Clone for MessageId {

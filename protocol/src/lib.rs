@@ -1,6 +1,7 @@
 extern crate core;
 
 pub mod message;
+mod stream;
 mod security;
 
 pub fn add(left: usize, right: usize) -> usize {
